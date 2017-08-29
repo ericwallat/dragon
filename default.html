@@ -54,29 +54,128 @@
 
 
 	<div class="container" id="main-body">
-		<img id="curtains" src="images/curtains.png"
-			style="position: absolute; z-index: 2; width: 100%; height: 100%;">
 
-		<!-- Sections -->
-		<section id="video" class="video" style="z-index:3;">
+		<div class="alert" id="info">
+			<span class="closebtn"
+				onclick="this.parentElement.style.display='none';">×</span> <strong>Hi!</strong>
+			Change the dragon's lights by clicking on the lights below or by
+			selecting a preset show!
+		</div>
 
-			<div class="videoWrapper">
-				<iframe width="1280" height="720"
-					src="https://www.youtube.com/embed/8CEPifkhPGA?autoplay=1"
-					allowFullScreen="allowFullScreen"></iframe>
+		<div class="split">
+			<div class="container" id="main-body-grid">
+				<div id="channels" class="grid"
+					style="padding-left: 0%; z-index: 3; margin: auto;">
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="1" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">1</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="2" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">2</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="3" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">3</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="4" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">4</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="5" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">5</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="6" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">6</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="7" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">7</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="8" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">8</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="9" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">9</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="10" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">10</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="11" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">11</button>
+						</div>
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="12" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;">12</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="13" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">13</button>
+						</div>
+					</div>
+				</div>
 			</div>
+			<section id="video" class="video" style="z-index: 3;">
+				<div class="videoWrapper">
+					<iframe width="1280" height="720"
+						src="https://www.youtube.com/embed/8CEPifkhPGA?autoplay=1"
+						allowFullScreen="allowFullScreen"></iframe>
+				</div>
+			</section>
+			<div class="container" id="main-body-grid">
 
-		</section>
+			</div>
+		</div>
 
-		<section id="about" class="about sections">
+		<!-- <section id="about" class="about sections">
 			<div class="container" id="main-body-grid">
 				<div id="subView" class="row">
-					<div class="alert" id="info">
-						<span class="closebtn"
-							onclick="this.parentElement.style.display='none';">×</span> <strong>Hi!</strong>
-						Change the dragon's lights by clicking on the lights below or by
-						selecting a preset show!
-					</div>
 					<div id="channels" class="grid"
 						style="width: 70%; padding-left: 0%; z-index: 3; margin: auto;">
 						<div class="grid-row" style="height: 12.5%;">
@@ -141,12 +240,7 @@
 							</div>
 							<div class="grid-cell empty-cell" style="width: 6.25%"></div>
 							<div class="grid-cell empty-cell" style="width: 6.25%"></div>
-							<div class="grid-cell noSelect notSelected"
-								data-type="chan-color" data-channel="1" style="width: 6.25%;">
-								<button
-									class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'update(this)'}"
-									style="width: 100%; height: 100%;">1</button>
-							</div>
+
 							<div class="grid-cell empty-cell" style="width: 6.25%"></div>
 							<div class="grid-cell empty-cell" style="width: 6.25%"></div>
 							<div class="grid-cell empty-cell" style="width: 6.25%"></div>
@@ -304,7 +398,7 @@
 				</div>
 			</div>
 		</section>
-	</div>
+	</div> -->
 
 
 	<!-- Sections
@@ -375,114 +469,115 @@
 	<script src="js/debounce.js"></script>
 
 	<script type="text/javascript">
-		var lastClick = 0;
-		var h = 0;
-		var s = 0;
-		var v = 0;
-		var delay = 100;
-		var loaded = 0;
-		var playing = true;
-		var ojon = $.getJSON("py/data.json", function(json) {
-			ojson = json;
-		});
-
-		var el = document.createElement('script');
-		el.src = 'py/data.json?nocache=' + (new Date()).getTime();
-		document.head.appendChild(el);
-
-		getColors();
-		setInterval(getColors, 2000)
-
-		function postData(arr) {
-			$.ajax({
-				type : "POST",
-				url : "http://EWALLAT7-32987:5000",
-				data : JSON.stringify(arr),
-				dataType : "json",
-				contentType : 'application/json; charset=utf-8',
-				success : function(data) {
-					console.log(data);
-				}
-			});
-		}
-
-		function callbackFunc(response) {
-			// do something with the response
-			console.log(response);
-		}
-
-		function update(jscolor) {
-			h = Math.round(jscolor.hsv[0]);
-			s = Math.round(jscolor.hsv[1]);
-			v = Math.round(jscolor.hsv[2]);
-			if (lastClick >= Date.now() - delay) {
-				return;
-			}
-			lastClick = Date.now();
-			var arr = {
-				'chan' : jscolor.styleElement.textContent,
-				'hue' : h,
-				'sat' : s,
-				'val' : v,
-				'play' : false
-			};
-			postData(arr);
-			playing = false;
-		}
-
-		function getColors() {
-			$
-					.getJSON(
-							"py/data.json",
-							function(json) {
-								if ((JSON.stringify(ojson) != JSON
-										.stringify(json))
-										|| loaded == 0) {
-									for (var i = 0; i < Object.keys(json).length; i++) {
-										var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
-										$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
-										$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
-												: '#FFF';
-									}
-									loaded = 1;
-								}
-							});
-			if (lastClick <= Date.now() - 60000 && !playing) {
-				$.ajax({
-					type : "POST",
-					url : "http://EWALLAT7-32987:5000",
-					data : JSON.stringify({
-						'play' : true
-					}),
-					dataType : "json",
-					contentType : 'application/json; charset=utf-8',
-					success : function(data) {
-						console.log(data);
-					}
+				var lastClick = 0;
+				var h = 0;
+				var s = 0;
+				var v = 0;
+				var delay = 100;
+				var loaded = 0;
+				var playing = true;
+				var ojon = $.getJSON("py/data.json", function(json) {
+					ojson = json;
 				});
-				console.log("play");
-				playing = true;
-			}
-		}
 
-		function isLight(rgb) {
-			rgb = rgb.replace(/[^\d,.]/g, '').split(',');
-			return (0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2] > 255 / 2);
-		}
+				var el = document.createElement('script');
+				el.src = 'py/data.json?nocache=' + (new Date()).getTime();
+				document.head.appendChild(el);
 
-		function resize() {
-			var grids = $(".grid-row").length;
-			for (var i = 0; i < grids; i++) {
-				$(".grid-row").eq(i).height($(".noSelect").eq(0).width());
-			}
-		}
+				getColors();
+				setInterval(getColors, 2000)
 
-		window.onresize = resize;
-		
-		$(document).ready(function() {
+				function postData(arr) {
+					$.ajax({
+						type : "POST",
+						url : "http://EWALLAT7-32987:5000",
+						data : JSON.stringify(arr),
+						dataType : "json",
+						contentType : 'application/json; charset=utf-8',
+						success : function(data) {
+							console.log(data);
+						}
+					});
+				}
 
-		});
-	</script>
+				function callbackFunc(response) {
+					// do something with the response
+					console.log(response);
+				}
 
+				function update(jscolor) {
+					h = Math.round(jscolor.hsv[0]);
+					s = Math.round(jscolor.hsv[1]);
+					v = Math.round(jscolor.hsv[2]);
+					if (lastClick >= Date.now() - delay) {
+						return;
+					}
+					lastClick = Date.now();
+					var arr = {
+						'chan' : jscolor.styleElement.textContent,
+						'hue' : h,
+						'sat' : s,
+						'val' : v,
+						'play' : false
+					};
+					postData(arr);
+					playing = false;
+				}
+
+				function getColors() {
+					$
+							.getJSON(
+									"py/data.json",
+									function(json) {
+										if ((JSON.stringify(ojson) != JSON
+												.stringify(json))
+												|| loaded == 0) {
+											for (var i = 0; i < Object
+													.keys(json).length; i++) {
+												var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
+												$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
+												$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
+														: '#FFF';
+											}
+											loaded = 1;
+										}
+									});
+					if (lastClick <= Date.now() - 60000 && !playing) {
+						$.ajax({
+							type : "POST",
+							url : "http://EWALLAT7-32987:5000",
+							data : JSON.stringify({
+								'play' : true
+							}),
+							dataType : "json",
+							contentType : 'application/json; charset=utf-8',
+							success : function(data) {
+								console.log(data);
+							}
+						});
+						console.log("play");
+						playing = true;
+					}
+				}
+
+				function isLight(rgb) {
+					rgb = rgb.replace(/[^\d,.]/g, '').split(',');
+					return (0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2] > 255 / 2);
+				}
+
+				function resize() {
+					var grids = $(".grid-row").length;
+					for (var i = 0; i < grids; i++) {
+						$(".grid-row").eq(i).height(
+								$(".noSelect").eq(0).width());
+					}
+				}
+
+				window.onresize = resize;
+
+				$(document).ready(function() {
+					resize();
+				});
+			</script>
 </body>
 </html>
