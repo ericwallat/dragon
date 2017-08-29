@@ -25,6 +25,21 @@
 
 <!--Theme Responsive css-->
 <link rel="stylesheet" href="css/responsive.css" />
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
+	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
+	crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"
+	integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n"
+	crossorigin="anonymous"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"
+	integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb"
+	crossorigin="anonymous"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
+	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
+	crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -179,12 +194,18 @@
 
 			</div>
 			<div class="container" id="main-body-grid">
-					<select class="selectpicker" data-style="btn-info"
-						style="display: none;">
-						<option>Mustard</option>
-						<option>Ketchup</option>
-						<option>Relish</option>
-					</select>
+				<div class="dropdown">
+					<button class="btn btn-secondary btn-lg btn-info dropdown-toggle" type="button"
+						id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+						aria-expanded="false" style="background-color:#00aeef">Dropdown</button>
+					<div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenu2">
+						<button class="dropdown-item" type="button">Action</button>
+						<button class="dropdown-item" type="button">Another
+							action</button>
+						<button class="dropdown-item" type="button">Something
+							else here</button>
+					</div>
+				</div>
 			</div>
 
 		</div>
