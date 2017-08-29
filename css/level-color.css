@@ -1,0 +1,175 @@
+/* LEVEL COLOR */
+.level-control{
+    position:absolute;
+    right:0%;
+    width:10%;
+    height:100%;
+    min-width:60px;
+}
+
+.top {
+    position:absolute;
+}
+.bottom {
+    position:absolute;
+    top: 86%;
+}
+
+.level-head-foot-button {
+    width:100%;
+    height:14%;
+}
+
+.level-head-foot-button button {
+    width:100%;
+    height:100%;
+}
+
+/* Toggle button for slider */
+.level-control #level-toggle{
+    cursor:pointer;
+    position:absolute;
+    left:0px;
+    top:14%;
+    width:100%;
+    height:5%;
+    text-align:center;
+    border-radius: 0 0 5px 5px;
+    border: 1px solid #505050;
+    background-color:#606060;
+    border-top:none;
+}
+
+.level-control #level-toggle img{
+    width:auto;
+    height:100%;
+}
+
+
+/* Contatiner for level buttons and level slider */
+.level-switcher{
+    position:absolute;
+    top:20%;
+    width:100%;
+    height:65%;
+}
+
+/* Percentage level control buttons */
+.level-buttons{
+    float: left;
+    position:relative;
+    width:100%;
+    height:100%;
+}
+.level-buttons button{
+    height:13%;
+    
+    width:100%;
+    margin-bottom:5px;
+}
+
+/* MAIN COLOR contatiner*/
+.color-content{
+    position:absolute;
+    left:0%;
+    width:90%;
+    height:100%;
+}
+@media screen and (max-width: 520px){
+    .color-content {
+        width:85%;
+    }
+}
+@media screen and (max-width: 380px){
+    .color-content {
+        width:80%;
+    }
+}
+
+/* Color picker ...*/
+#color-picker img{
+    position:absolute;
+    right:2%;
+    width:98%;
+    height:100%;
+}
+
+/* SLIDER (level-color)*/
+.slider-bar{
+    position:relative;
+    width:100%;
+    height:100%;
+}
+
+.slider-bar .slider-background{
+    border:2px solid #505050;
+    position:absolute;
+    width:70%;
+    height:100%;
+    left:15%;
+    background: -webkit-linear-gradient(#808080, #000, #808080); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#808080, #000, #808080); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#808080, #000, #808080); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#808080, #000, #808080); /* Standard syntax */
+}
+
+.slider-bar .slider {
+    border: 2px solid #808080;
+    border-radius: 10px;
+    position: absolute;
+    width: 100%;
+    height: 20%;
+    top: 50%;
+    left: 0;
+    color:#808080;
+    text-align:center;
+    background: -webkit-linear-gradient(#707070, #303030, #303030, #707070); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(#707070, #303030, #303030, #707070); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(#707070, #303030, #303030, #707070); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(#707070, #303030, #303030, #707070); /* Standard syntax */
+}
+.slider-bar .slider p{
+    cursor:default;
+    position: relative;
+    top:50%;
+    margin-top:-10px;
+}
+
+/* This tweaks level control buttons for when screen height is too small typically phones in landscape. */
+@media (max-height: 445px) {
+    .level-control .btn{
+        padding:0;
+        font-size:xx-small;
+    }
+    .level-control .btn-primary{
+        padding:0;
+        font-size:xx-small;
+    }
+    .level-head-foot-button.bottom{
+        top: 83%;
+    }
+}
+
+
+/*CHIPS*/
+
+.chip-holder{
+    position:relative;
+    width:100%;
+    height:100%;
+    padding-left:2%;
+}
+
+.chip{
+    position:relative;
+    float:left;
+    width:11%;
+    height: 18%;
+    min-height: 30px;
+    margin-left:1%;
+    margin-bottom:1%;
+    border-radius:5px;
+}
+
+
+

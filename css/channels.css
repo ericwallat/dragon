@@ -1,0 +1,149 @@
+/* CHANNELS VIEW CSS */
+.solo-channels{
+    position:absolute;
+    left:0;
+    height:100%;
+    width:89%;
+}
+
+button.btn.blank:hover,
+button.btn.blank:focus,
+button.btn.blank:active{
+    cursor:default;
+    background-color: #262626;
+    border-color: #262626;
+}
+
+.grid {
+    position:relative;
+    left:0;
+    height: 45%;
+    top:15%;
+}
+
+.grid-row {
+    position:relative;
+    width:100%;
+}
+
+.grid-cell{
+    position:relative;
+    float:left;
+    height:100%;
+}
+
+.grid-cell.notSelected {
+    border: 2px solid #333333;
+}
+
+.grid-cell.isSelected{
+    border: 4px solid #008800;
+}
+
+.grid-cell span{
+    position:absolute;
+    left:50%;
+    top:50%;
+
+    -ms-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+
+    font-weight:bold;
+    font-size:18px;
+}
+
+@media screen and (max-width: 389px) {
+.grid-cell span{
+    font-size:14px;
+}
+}
+
+.grid-side-bar{
+    position:absolute;
+    right:0;
+    top:0;
+    background-color:#222222;
+    width:5%;
+    min-width: 60px;
+    height:100%;
+    padding-top:5px;
+}
+
+@media (max-width: 567px){
+    .grid-side-bar {
+        width: 10%;
+    }
+}
+
+
+.grid-side-bar-button{
+    cursor:pointer;
+    position:relative;
+    width:100%;
+    text-align:center;
+}
+
+.grid-side-bar-seperator{
+    position:relative;
+    width:100%;
+    height:1px;
+    margin: 4px 0;
+    background-color:#333333;
+}
+
+.grid-side-bar-button img{
+    width:80%;
+    height:auto;
+}
+
+/* This is for  landscapr phones, the height is too small for the stacked buttons so we tile them*/
+@media (max-height: 420px){
+    .grid-side-bar {
+        width: 20%;
+    }
+
+    .grid-side-bar-button{
+        cursor:pointer;
+        position:relative;
+        width:50%;
+        float:left;
+        text-align:center;
+        margin-bottom:10px;
+}
+
+    .grid-side-bar-seperator{
+        display:none;
+    }
+
+    .grid-side-bar-button img{
+        width:80%;
+        height:auto;
+    }
+
+    .solo-channels .grid-side-bar {
+        width: 10%;
+     }
+    
+    .solo-channels .grid-side-bar-button{
+        cursor:pointer;
+        position:relative;
+        width:100%;
+        text-align:center;
+    }
+
+    .solo-channels .grid-side-bar-seperator{
+        position:relative;
+        width:100%;
+        height:1px;
+        margin: 4px 0;
+        background-color:#333333;
+    }
+
+    .solo-channels .grid-side-bar-button img{
+        width:80%;
+        height:auto;
+    }
+}
