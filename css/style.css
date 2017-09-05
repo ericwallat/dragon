@@ -1594,32 +1594,44 @@ For Menu Bar Design
 	width:100%;
 }
 
-#usa:hover {
+#USA:hover {
 	background:linear-gradient(to bottom right, #3c3b6e, #3c3b6e, white, #bb133e, white, #bb133e, white);
 }
 
-#germ:hover {
+#Germany:hover {
 	background:linear-gradient(black, red, gold);
 }
 
-#eng:hover {
+#England:hover {
 	background:linear-gradient(to right, mediumblue, white, red, white, mediumblue);
 }
 
-#hk:hover {
+#HongKong:hover {
 	background:linear-gradient(to right, red , white, red);
 }
 
-#italy:hover {
+#Italy:hover {
 	background:linear-gradient(#00ae00, white, red);
 }
 
-#neth:hover {
+#Netherlands:hover {
 	background:linear-gradient(red, white, mediumblue);
 }
 
-#can:hover {
+#Canada:hover {
 	background:linear-gradient(to right, red , white, red, white, red);
+}
+
+#Fire:hover {
+	background:linear-gradient(to right, #ad2716, #282a2c, #564e45, #d0522b, #514848);
+}
+
+#WinterIsComing:hover {
+	background:linear-gradient(to right, #2b3b4a, #e4e5eb, #363233, #574d43, #8d998a);
+}
+
+#Dragon:hover {
+	background:linear-gradient(to right, #0096b6, #7400b6, #6b6b6b, #6b0606, #7a4a0f);
 }
 
 #menu:hover {

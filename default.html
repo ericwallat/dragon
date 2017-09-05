@@ -193,14 +193,20 @@
 					<div class="dropdown-menu dropdown-menu-center"
 						style="left: 50%; right: auto; text-align: center; transform: translate(-50%, 0); width: 100%;"
 						aria-labelledby="dropdownMenu2">
-						<button class="dropdown-item" id="usa" type="button">USA</button>
-						<button class="dropdown-item" id="germ" type="button">Germany</button>
-						<button class="dropdown-item" id="eng" type="button">England</button>
-						<button class="dropdown-item" id="hk" type="button">Hong
+						<h6 class="dropdown-header">ETC Locations</h6>
+						<button class="dropdown-item" id="USA" type="button">USA</button>
+						<button class="dropdown-item" id="Germany" type="button">Germany</button>
+						<button class="dropdown-item" id="England" type="button">England</button>
+						<button class="dropdown-item" id="HongKong" type="button">Hong
 							Kong</button>
-						<button class="dropdown-item" id="italy" type="button">Italy</button>
-						<button class="dropdown-item" id="neth" type="button">Netherlands</button>
-						<button class="dropdown-item" id="can" type="button">Canada</button>
+						<button class="dropdown-item" id="Italy" type="button">Italy</button>
+						<button class="dropdown-item" id="Netherlands" type="button">Netherlands</button>
+						<button class="dropdown-item" id="Canada" type="button">Canada</button>
+						<div class="dropdown-divider"></div>
+						<h6 class="dropdown-header">More Themes</h6>
+						<button class="dropdown-item" id="Fire" type="button">Fire</button>
+						<button class="dropdown-item" id="WinterIsComing" type="button">Winter</button>
+						<button class="dropdown-item" id="Dragon" type="button">Dragon Scales</button>
 					</div>
 				</div>
 			</div>
@@ -311,8 +317,9 @@
 				'preset' : false
 			};
 			postData(arr);
-			log = "OSC Command: ";
-			log += "/cs/chan/select/" + jscolor.styleElement.textContent + "   /cs/chan/at/" + v + "   /cs/color/hs/" + h + "/" + s;
+			log = "Changing channel " + jscolor.styleElement.textContent + " to hsv: " + h + ", " + s + ", " + v +
+			" using OSC Commands: " + "/cs/chan/select/" + jscolor.styleElement.textContent +
+			"      /cs/chan/at/" + v + "      /cs/color/hs/" + h + "/" + s;
 			changeLog(log);
 			playing = false;
 		}
@@ -395,7 +402,7 @@
 		$(".dropdown-item").on("click", event, function() {
 			var arr = {};
 			switch (event.target.id) {
-			case 'usa':
+			case 'USA':
 				arr = {
 					'chan' : [ [ 13, 12, 9, 1 ], [ 11, 7, 8 ], [ 2, 10, 3, 4, 5, 6 ] ],
 					'h1' : 210,
@@ -411,7 +418,7 @@
 					'play' : false
 				};
 				break;
-			case 'can':
+			case 'Canada':
 				arr = {
 					'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
 					'h1' : 352,
@@ -424,7 +431,7 @@
 					'play' : false
 				};
 				break;
-			case 'italy':
+			case 'Italy':
 				arr = {
 					'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
 					'h1' : 120,
@@ -440,7 +447,7 @@
 					'play' : false
 				};
 				break;
-			case 'hk':
+			case 'HongKong':
 				arr = {
 					'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
 					'h1' : 0,
@@ -453,7 +460,7 @@
 					'play' : false
 				};
 				break;
-			case 'germ':
+			case 'Germany':
 				arr = {
 					'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
 					'h1' : 0,
@@ -469,7 +476,7 @@
 					'play' : false
 				};
 				break;
-			case 'neth':
+			case 'Netherlands':
 				arr = {
 					'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
 					'h1' : 0,
@@ -485,7 +492,7 @@
 					'play' : false
 				};
 				break;
-			case 'eng':
+			case 'England':
 				arr = {
 					'chan' : [ [ 13, 11, 9, 4, 3 ], [ 1, 7, 6 ], [ 2, 10, 12, 5, 8 ] ],
 					'h1' : 210,
@@ -501,6 +508,72 @@
 					'play' : false
 				};
 				break;
+			case 'Fire':
+				arr = {
+					'chan' : [[1,2,3], [4,5], [6,7,8], [9,10], [11,12,13]],
+					'h1' : 7,
+					's1' : 87,
+					'v1' : 68,
+					'h2' : 210,
+					's2' : 9,
+					'v2' : 17,
+					'h3' : 32,
+					's3' : 20,
+					'v3' : 34,
+					'h4' : 14,
+					's4' : 79,
+					'v4' : 82,
+					'h5' : 0,
+					's5' : 11,
+					'v5' : 32,
+					'preset' : true,
+					'play' : false		
+				};
+				break;
+			case 'WinterIsComing':
+				arr = {
+					'chan' : [[11,12,13], [1,2], [3,4,5], [6,7], [8,9,10]],
+					'h1' : 209,
+					's1' : 42,
+					'v1' : 29,
+					'h2' : 231,
+					's2' : 3,
+					'v2' : 92,
+					'h3' : 345,
+					's3' : 7,
+					'v3' : 21,
+					'h4' : 30,
+					's4' : 23,
+					'v4' : 34,
+					'h5' : 108,
+					's5' : 10,
+					'v5' : 60,
+					'preset' : true,
+					'play' : false		
+				};
+				break;
+			case 'Dragon':
+				arr = {
+					'chan' : [[9,10,11], [12,13], [1,2,3], [4,5], [6,7,8]],
+					'h1' : 191,
+					's1' : 100,
+					'v1' : 71,
+					'h2' : 278,
+					's2' : 100,
+					'v2' : 71,
+					'h3' : 0,
+					's3' : 0,
+					'v3' : 42,
+					'h4' : 0,
+					's4' : 94,
+					'v4' : 42,
+					'h5' : 33,
+					's5' : 88,
+					'v5' : 48,
+					'preset' : true,
+					'play' : false		
+				};
+				break;
 	
 			}
 			$.ajax({
@@ -513,6 +586,8 @@
 					console.log(data);
 				}
 			});
+			log = "Changing channels for " + event.target.id + " theme... ";
+			changeLog(log);
 			playing = false;
 			lastClick = Date.now();
 	
