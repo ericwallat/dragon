@@ -339,6 +339,12 @@ Separator
 	margin:20px 0;
 }
 
+.separator h1{
+	text-align: center; 
+	display: table-cell; 
+	vertical-align: middle;
+}
+
 /*
 Button
 */
@@ -1453,7 +1459,7 @@ For Menu Bar Design
 	position:relative;
 	width:100%;
 	margin:auto;
-	top:2%;
+	bottom: 12px;
 	text-align:center;
 	font-family: 'MedievalSharp', cursive !important;
 }
@@ -1465,10 +1471,18 @@ For Menu Bar Design
 }
 
 #about{
-	padding-bottom:5%;
+	padding:5% 0;
 }
 
+#box{
+	border: 2px solid #eee;
+	height:110px;
+}
 
+#box p{
+	padding:0;
+	margin:0;
+}
 
 .alert {
 	padding: 20px;
