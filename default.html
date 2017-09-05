@@ -19,6 +19,8 @@
 <!--For Plugins external css-->
 <link rel="stylesheet" href="css/channels.css">
 <link rel="stylesheet" href="css/level-color.css">
+<link href="https://fonts.googleapis.com/css?family=MedievalSharp"
+	rel="stylesheet">
 
 <!--Theme custom css -->
 <link rel="stylesheet" href="css/style.css">
@@ -50,33 +52,23 @@
 
 	<!--Home page style-->
 
-	<div class="separator"></div>
-	<header class="home home-main-bar">
-		<div id="home" class="home home-main-content">
-			<div class="headerlogo">
-				<a href='#'><img id="etclogo" src="images/etclogo.png"></a>
-			</div>
-			<div class="div-menu">
-				<a href="#about"><span style="font-size: 1rem; color: white;">Change
-						the Dragon's Lights!</span></a>
-			</div>
-			<div class="div-menu">
-				<a href="http://etcconnect.com"><span
-					style="font-size: 1rem; color: white;">Visit etcconnect.com</span></a>
-			</div>
-		</div>
-	</header>
+	<div class="separator">
+		<h1
+			style="text-align: center; display: table-cell; vertical-align: middle;">Welcome
+			to Project Dragon!</h1>
+	</div>
 
 
 	<div class="container" id="main-body">
 		<div class="alert" id="info">
 			<span class="closebtn"
 				onclick="this.parentElement.style.display='none';">×</span> <strong>Hi!</strong>
-			Change the dragon's lights by clicking on the lights below or by
-			selecting a preset show!
+			Change the dragon's lights by using the buttons on the left or by
+			selecting a preset from the dropdown!
 		</div>
 		<div class="split">
 			<div class="container" id="main-body-grid">
+				<h2 style="text-align: center; color:#eee;">Light Controls</h2>
 				<div id="channels" class="grid"
 					style="padding-left: 0%; z-index: 3; margin: auto;">
 					<div class="grid-row" style="height: 12.5%;">
@@ -195,21 +187,47 @@
 			</div>
 			<div class="container" id="main-body-grid">
 				<div class="dropdown">
-					<button class="btn btn-secondary btn-lg btn-info dropdown-toggle" type="button"
-						id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-						aria-expanded="false" style="background-color:#00aeef">Dropdown</button>
-					<div class="dropdown-menu dropdown-menu-center" aria-labelledby="dropdownMenu2">
-						<button class="dropdown-item" type="button">Action</button>
-						<button class="dropdown-item" type="button">Another
-							action</button>
-						<button class="dropdown-item" type="button">Something
-							else here</button>
+					<button class="btn btn-secondary btn-lg btn-info dropdown-toggle"
+						type="button" id="dropdownMenu2" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false"
+						style="color:#eee;background-color: #00aeef; white-space: normal; font-family: 'MedievalSharp', cursive !important;">Presets</button>
+					<div class="dropdown-menu dropdown-menu-center"
+						style="left: 50%; right: auto; text-align: center; transform: translate(-50%, 0); width: 100%;"
+						aria-labelledby="dropdownMenu2">
+						<button class="dropdown-item" id="usa" type="button">USA</button>
+						<button class="dropdown-item" id="germ" type="button">Germany</button>
+						<button class="dropdown-item" id="eng" type="button">England</button>
+						<button class="dropdown-item" id="hk" type="button">Hong
+							Kong</button>
+						<button class="dropdown-item" id="italy" type="button">Italy</button>
+						<button class="dropdown-item" id="neth" type="button">Netherlands</button>
+						<button class="dropdown-item" id="can" type="button">Canada</button>
 					</div>
 				</div>
 			</div>
 
 		</div>
 	</div>
+	
+	<div class="container" id="about">
+	
+		<h2>What's happening here?</h2>
+		<p>You are utilizing a communication protocol known as 
+			<a target="_blank" href="http://opensoundcontrol.org/introduction-osc">Open Sound Control (OSC).</a>
+			OSC is a protocol that uses network communication (wired or wireless) to communicate between
+			various aduio, video, and lighting devices, and other devices, for remote control of ETC consoles.</p>	
+	</div>
+
+	<footer id="footer" class="footer">
+		<div class="container" style="text-align: center;">
+
+			<div class="logo">
+				<a href="http://etcconnect.com"><img src="images/etclogo.png"
+					alt="Logo" /></a>
+			</div>
+
+		</div>
+	</footer>
 
 
 	<script src="js/vendor/jquery-1.11.2.min.js"></script>
@@ -222,121 +240,7 @@
 	<script src="js/Slider.js"></script>
 	<script src="js/Views.js"></script>
 	<script src="js/debounce.js"></script>
+	<script src="js/main.js"></script>
 
-	<script type="text/javascript">
-		var lastClick = 0;
-		var h = 0;
-		var s = 0;
-		var v = 0;
-		var delay = 100;
-		var loaded = 0;
-		var playing = true;
-		var ojon = $.getJSON("py/data.json", function(json) {
-			ojson = json;
-		});
-
-		var el = document.createElement('script');
-		el.src = 'py/data.json?nocache=' + (new Date()).getTime();
-		document.head.appendChild(el);
-
-		getColors();
-		setInterval(getColors, 2000)
-
-		function postData(arr) {
-			$.ajax({
-				type : "POST",
-				url : "http://EWALLAT7-32987:5000",
-				data : JSON.stringify(arr),
-				dataType : "json",
-				contentType : 'application/json; charset=utf-8',
-				success : function(data) {
-					console.log(data);
-				}
-			});
-		}
-
-		function callbackFunc(response) {
-			// do something with the response
-			console.log(response);
-		}
-
-		function update(jscolor) {
-			h = Math.round(jscolor.hsv[0]);
-			s = Math.round(jscolor.hsv[1]);
-			v = Math.round(jscolor.hsv[2]);
-			if (lastClick >= Date.now() - delay) {
-				return;
-			}
-			lastClick = Date.now();
-			var arr = {
-				'chan' : jscolor.styleElement.textContent,
-				'hue' : h,
-				'sat' : s,
-				'val' : v,
-				'play' : false
-			};
-			postData(arr);
-			playing = false;
-		}
-
-		function getColors() {
-			$
-					.getJSON(
-							"py/data.json",
-							function(json) {
-								if ((JSON.stringify(ojson) != JSON
-										.stringify(json))
-										|| loaded == 0) {
-									for (var i = 0; i < Object.keys(json).length; i++) {
-										var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
-										$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
-										$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
-												: '#FFF';
-									}
-									loaded = 1;
-								}
-							});
-			if (lastClick <= Date.now() - 60000 && !playing) {
-				$.ajax({
-					type : "POST",
-					url : "http://EWALLAT7-32987:5000",
-					data : JSON.stringify({
-						'play' : true
-					}),
-					dataType : "json",
-					contentType : 'application/json; charset=utf-8',
-					success : function(data) {
-						console.log(data);
-					}
-				});
-				console.log("play");
-				playing = true;
-			}
-		}
-
-		function isLight(rgb) {
-			rgb = rgb.replace(/[^\d,.]/g, '').split(',');
-			return (0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2] > 255 / 2);
-		}
-
-		function resize() {
-			var grids = $(".grid-row").length;
-			for (var i = 0; i < grids; i++) {
-				$(".grid-row").eq(i).height($(".noSelect").eq(0).width());
-			}
-			var width = $(".split").width() * 0.61;
-			var height = width / 1.77777;
-			$("#video").attr("width", width);
-			$("#video").attr("height", height);
-
-		}
-
-		window.onresize = resize;
-
-		$(document).ready(function() {
-			resize();
-			console.log("yes");
-		});
-	</script>
 </body>
 </html>

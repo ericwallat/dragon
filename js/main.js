@@ -1,175 +1,240 @@
-"use strict";
+var lastClick = 0;
+var h = 0;
+var s = 0;
+var v = 0;
+var delay = 100;
+var loaded = 0;
+var playing = true;
+var ojon = $.getJSON("py/data.json", function(json) {
+	ojson = json;
+});
 
+var el = document.createElement('script');
+el.src = 'py/data.json?nocache=' + (new Date()).getTime();
+document.head.appendChild(el);
 
-jQuery(document).ready(function ($) {
-	$(window).load(function () {
-		$(".loaded").fadeOut();
-		$(".preloader").delay(1000).fadeOut("slow");
+getColors();
+setInterval(getColors, 2000)
+
+function postData(arr) {
+	$.ajax({
+		type : "POST",
+		url : "http://EWALLAT7-32987:5000",
+		data : JSON.stringify(arr),
+		dataType : "json",
+		contentType : 'application/json; charset=utf-8',
+		success : function(data) {
+			console.log(data);
+		}
 	});
+}
 
-    /*---------------------------------------------*
-     * Mobile menu
-     ---------------------------------------------*/
-    $('#navbar-collapse').find('a[href*=#]:not([href=#])').click(function () {
-        if (location.pathname.replace(/^\//, '') == this.pathname.replace(/^\//, '') && location.hostname == this.hostname) {
-            var target = $(this.hash);
-            target = target.length ? target : $('[name=' + this.hash.slice(1) + ']');
-            if (target.length) {
-                $('html,body').animate({
-                    scrollTop: (target.offset().top - 40)
-                }, 1000);
-                if ($('.navbar-toggle').css('display') != 'none') {
-                    $(this).parents('.container').find(".navbar-toggle").trigger("click");
-                }
-                return false;
-            }
-        }
-    });
-	
-	
-	/*---------------------------------------------*
-     * For mixItUp Portfolio
-     ---------------------------------------------*/
-	
-	$('#test').mixItUp({
-    animation: {
-      animateResizeContainer: false,
-      effects: 'fade rotateX(-45deg) translateY(-10%)'
-    }
-	});
-	
-	
-	/*---------------------------------------------*
-     * Youtube Media
-     ---------------------------------------------*/
-    $('.youtube-media').magnificPopup({type: 'iframe'});
-	
-	
-	/*---------------------------------------------*
-     * Scroll Up
-     ---------------------------------------------*/
-    $(window).scroll(function () {
-        if ($(this).scrollTop() > 600) {
-            $('.scrollup').fadeIn('slow');
-        } else {
-            $('.scrollup').fadeOut('slow');
-        }
-    });
+function callbackFunc(response) {
+	// do something with the response
+	console.log(response);
+}
 
-    $('.scrollup').click(function () {
-        $("html, body").animate({scrollTop: 0}, 1000);
-        return false;
-    });
-	
-	
-	/*---------------------------------------------*
-     * STICKY scroll
-     ---------------------------------------------*/
+function update(jscolor) {
+	h = Math.round(jscolor.hsv[0]);
+	s = Math.round(jscolor.hsv[1]);
+	v = Math.round(jscolor.hsv[2]);
+	if (lastClick >= Date.now() - delay) {
+		return;
+	}
+	lastClick = Date.now();
+	var arr = {
+		'chan' : jscolor.styleElement.textContent,
+		'hue' : h,
+		'sat' : s,
+		'val' : v,
+		'play' : false,
+		'preset' : false
+	};
+	postData(arr);
+	playing = false;
+}
 
-    $.localScroll();
-
-	  var skillBarTopPos = jQuery('.skillbar').position().top;
-	  jQuery(document).scroll(function(){
-		var scrolled_val = $(document).scrollTop().valueOf();
-		if(scrolled_val>skillBarTopPos-250) startAnimation();
-	  });
-
-	  function startAnimation(){
-		jQuery('.skillbar').each(function(){
-		  jQuery(this).find('.skillbar-bar').animate({
-			width:jQuery(this).attr('data-percent')
-		  },6000);
+function getColors() {
+	$.getJSON("py/data.json",function(json) {
+				if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
+					for (var i = 0; i < Object.keys(json).length; i++) {
+						var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
+						$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
+						$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
+								: '#FFF';
+					}
+					ojson = json;
+					loaded = 1;
+				}
+			});
+	if (lastClick <= Date.now() - 60000 && !playing) {
+		$.ajax({
+			type : "POST",
+			url : "http://EWALLAT7-32987:5000",
+			data : JSON.stringify({
+				'play' : true,
+				'preset' : false
+			}),
+			dataType : "json",
+			contentType : 'application/json; charset=utf-8',
+			success : function(data) {
+				console.log(data);
+			}
 		});
-	  };
-	
-	/*---------------------------------------------*
-     * Menu Section
-     ---------------------------------------------*/
+		console.log("play");
+		playing = true;
+	}
+}
 
-    $('.cd-menu-trigger').on('click', function (event) {
-        event.preventDefault();
-        $('.home-main-content').addClass('move-out');
-        $('#main-nav').addClass('is-visible');
-        $('.cd-shadow-layer').addClass('is-visible');
-    });
-    //close menu
-    $('.cd-close-menu').on('click', function (event) {
-        event.preventDefault();
-        $('.home-main-content').removeClass('move-out');
-        $('#main-nav').removeClass('is-visible');
-        $('.cd-shadow-layer').removeClass('is-visible');
-    });
+function isLight(rgb) {
+	rgb = rgb.replace(/[^\d,.]/g, '').split(',');
+	var multi = 1;
+	if (rgb.length > 3) {
+		multi = rgb[3];
+	}
+	return ((0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2]) * multi > 255 / 2);
+}
 
-    //clipped image - blur effect
-    set_clip_property();
-    $(window).on('resize', function () {
-        set_clip_property();
-    });
+function resize() {
+	var grids = $(".grid-row").length;
+	for (var i = 0; i < grids; i++) {
+		$(".grid-row").eq(i).height($(".noSelect").eq(0).width());
+	}
+	var width = $(".split").width() * 0.61;
+	var height = width / 1.77777;
+	$("#video").attr("width", width);
+	$("#video").attr("height", height);
 
-    function set_clip_property() {
-        var $header_height = $('.cd-header').height(),
-                $window_height = $(window).height(),
-                $header_top = $window_height - $header_height,
-                $window_width = $(window).width();
-        $('.cd-blurred-bg').css('clip', 'rect(' + $header_top + 'px, ' + $window_width + 'px, ' + $window_height + 'px, 0px)');
-    }
-    $('#main-nav a[href^="#"]').on('click', function (event) {
-        event.preventDefault();
-        var target = $(this.hash);
-        $('.home-main-content').removeClass('move-out');
-        $('#main-nav').removeClass('is-visible');
-        $('.cd-shadow-layer').removeClass('is-visible');
-        $('body,html').animate(
-                {'scrollTop': target.offset().top},
-        900
-                );
-    });
+}
 
+$(".dropdown-item").on("click", event, function() {
+	var arr = {};
+	switch (event.target.id) {
+	case 'usa':
+		arr = {
+			'chan' : [ [ 13, 12, 9, 1 ], [ 11, 7, 8 ], [ 2, 10, 3, 4, 5, 6 ] ],
+			'h1' : 210,
+			's1' : 100,
+			'v1' : 32,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'h3' : 352,
+			's3' : 82,
+			'v3' : 48,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'can':
+		arr = {
+			'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
+			'h1' : 352,
+			's1' : 82,
+			'v1' : 48,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'italy':
+		arr = {
+			'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
+			'h1' : 120,
+			's1' : 100,
+			'v1' : 34,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'h3' : 352,
+			's3' : 82,
+			'v3' : 48,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'hk':
+		arr = {
+			'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
+			'h1' : 0,
+			's1' : 100,
+			'v1' : 50,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'germ':
+		arr = {
+			'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
+			'h1' : 0,
+			's1' : 0,
+			'v1' : 0,
+			'h2' : 0,
+			's2' : 100,
+			'v2' : 50,
+			'h3' : 51,
+			's3' : 100,
+			'v3' : 50,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'neth':
+		arr = {
+			'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
+			'h1' : 0,
+			's1' : 100,
+			'v1' : 50,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'h3' : 240,
+			's3' : 100,
+			'v3' : 40,
+			'preset' : true,
+			'play' : false
+		};
+		break;
+	case 'eng':
+		arr = {
+			'chan' : [ [ 13, 11, 9, 4, 3 ], [ 1, 7, 6 ], [ 2, 10, 12, 5, 8 ] ],
+			'h1' : 210,
+			's1' : 100,
+			'v1' : 32,
+			'h2' : 0,
+			's2' : 0,
+			'v2' : 100,
+			'h3' : 352,
+			's3' : 82,
+			'v3' : 48,
+			'preset' : true,
+			'play' : false
+		};
+		break;
 
-    /*---------------------------------------------*
-     * STICKY scroll
-     ---------------------------------------------*/
+	}
+	$.ajax({
+		type : "POST",
+		url : "http://EWALLAT7-32987:5000",
+		data : JSON.stringify(arr),
+		dataType : "json",
+		contentType : 'application/json; charset=utf-8',
+		success : function(data) {
+			console.log(data);
+		}
+	});
+	playing = false;
+	lastClick = Date.now();
 
-    $.localScroll();
+});
 
+window.onresize = resize;
 
-
-    /*---------------------------------------------*
-     * Counter 
-     ---------------------------------------------*/
-
-    $('.count-number').counterUp({
-        delay: 10,
-        time: 2000
-    });
-
-
-
-
-    /*---------------------------------------------*
-     * WOW
-     ---------------------------------------------*/
-
-//        var wow = new WOW({
-//            mobile: false // trigger animations on mobile devices (default is true)
-//        });
-//        wow.init();
-
-
-    /* ---------------------------------------------------------------------
-     Carousel
-     ---------------------------------------------------------------------= */
-
-//    $('.testimonials').owlCarousel({
-//        responsiveClass: true,
-//        autoplay: false,
-//        items: 1,
-//        loop: true,
-//        dots: true,
-//        autoplayHoverPause: true
-//
-//    });
-
-
-    //End
+$(document).ready(function() {
+	resize();
 });
