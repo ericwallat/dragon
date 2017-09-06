@@ -285,7 +285,7 @@
 		function postData(arr) {
 			$.ajax({
 				type : "POST",
-				url : "http://EWALLAT7-32987:5000",
+				url : "http://localhost:5000",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
@@ -347,7 +347,7 @@
 		}
 	
 		function getColors() {
-			$.getJSON("py/data.json",function(json) {
+			$.getJSON("data.json",function(json) {
 						if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
 							for (var i = 0; i < Object.keys(json).length; i++) {
 								var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
@@ -362,7 +362,7 @@
 			if (lastClick <= Date.now() - 60000 && !playing) {
 				$.ajax({
 					type : "POST",
-					url : "http://EWALLAT7-32987:5000",
+					url : "http://localhost:5000",
 					data : JSON.stringify({
 						'play' : true,
 						'preset' : false
@@ -578,7 +578,7 @@
 			}
 			$.ajax({
 				type : "POST",
-				url : "http://EWALLAT7-32987:5000",
+				url : "http://localhost:5000",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
