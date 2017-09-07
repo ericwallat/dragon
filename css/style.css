@@ -166,6 +166,7 @@ h3 {
     font-family: 'MedievalSharp', cursive !important;
     font-weight: 300;
     margin: 0;
+    font-size: 3rem;
 }
 h4,
 h5 {
@@ -1476,12 +1477,18 @@ For Menu Bar Design
 
 #box{
 	border: 2px solid #eee;
-	height:110px;
+	height:auto;
+	width:90%;
 }
 
 #box p{
-	padding:0;
-	margin:0;
+	padding:2px;
+	margin:0 !important;
+	font-size:1.2vw;
+}
+
+#log {
+	width:90%;
 }
 
 .alert {

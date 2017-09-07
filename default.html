@@ -270,13 +270,13 @@
 		var delay = 100;
 		var loaded = 0;
 		var playing = true;
-		var ojon = $.getJSON("py/data.json", function(json) {
+		var ojon = $.getJSON("data.json", function(json) {
 			ojson = json;
 		});
 		var log = "";
 	
 		var el = document.createElement('script');
-		el.src = 'py/data.json?nocache=' + (new Date()).getTime();
+		el.src = 'data.json?nocache=' + (new Date()).getTime();
 		document.head.appendChild(el);
 	
 		getColors();
@@ -285,7 +285,7 @@
 		function postData(arr) {
 			$.ajax({
 				type : "POST",
-				url : "http://localhost:5000",
+				url : "http://dragon10-33705:8006",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
@@ -352,6 +352,7 @@
 							for (var i = 0; i < Object.keys(json).length; i++) {
 								var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
 								$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
+								console.log(json);
 								$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
 										: '#FFF';
 							}
@@ -362,7 +363,7 @@
 			if (lastClick <= Date.now() - 60000 && !playing) {
 				$.ajax({
 					type : "POST",
-					url : "http://localhost:5000",
+					url : "http://dragon10-33705:8006",
 					data : JSON.stringify({
 						'play' : true,
 						'preset' : false
@@ -379,12 +380,16 @@
 		}
 	
 		function isLight(rgb) {
+			try{
 			rgb = rgb.replace(/[^\d,.]/g, '').split(',');
 			var multi = 1;
 			if (rgb.length > 3) {
 				multi = rgb[3];
 			}
 			return ((0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2]) * multi > 255 / 2);
+		}catch(e){
+			return true;
+		}
 		}
 	
 		function resize() {
@@ -578,7 +583,7 @@
 			}
 			$.ajax({
 				type : "POST",
-				url : "http://localhost:5000",
+				url : "http://dragon10-33705:8006",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
