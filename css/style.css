@@ -1440,9 +1440,8 @@ For Menu Bar Design
 }
 
 .videocontainer iframe {
-	position:absolute;
-	top:22px;
-	left: 0;
+	position: relative !important;
+	left: 4px;
 	width: 100%;
 	height:100%;
 }
@@ -1641,10 +1640,22 @@ For Menu Bar Design
 	background:linear-gradient(to right, #0096b6, #7400b6, #6b6b6b, #6b0606, #7a4a0f);
 }
 
+#Trogdor:hover {
+	background:linear-gradient(to right, darkgreen, green, lightgreen, red)
+}
+
 #menu:hover {
 	color: #00aeef !important;
 }
 
 a:hover {
 	text-decoration: none !important;
+}
+
+#world {
+  background: #652e37;
+  position:absolute;
+  width:100%;
+  height:100%;
+  overflow:hidden;
 }

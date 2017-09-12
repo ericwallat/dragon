@@ -8,12 +8,12 @@
 <head>
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-<title>Dragon</title>
+<title>ETC | Project Dragon</title>
 <meta name="description" content="">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link rel="stylesheet" href="css/bootstrap.min.css">
-<!--        <link rel="stylesheet" href="assets/css/bootstrap-theme.min.css">-->
+
 
 
 <!--For Plugins external css-->
@@ -54,7 +54,7 @@
 	<!--Home page style-->
 
 	<div class="separator">
-		<h1>Welcome to Project Dragon!</h1>
+		<h1 id="header">Welcome to Project Dragon!</h1>
 	</div>
 
 
@@ -173,17 +173,22 @@
 
 				<object width="640" height="360">
 					<param name="movie"
-						value="http://www.youtube.com/embed/8CEPifkhPGA?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3" />
+						value="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3" />
 					<param name="allowFullScreen" value="true" />
 					<param name="allowscriptaccess" value="always" />
 					<embed id="video" width="640" height="360"
-						src="http://www.youtube.com/embed/8CEPifkhPGA?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3"
+						src="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3"
 						class="youtube-player" type="text/html" allowscriptaccess="always"
 						allowfullscreen="true" style="width: 100%;" />
 				</object>
-
-
+				<a href="https://twitter.com/share" class="twitter-share-button"
+					data-size="large" data-text="Change the lights on the dragon at "
+					data-url="http://etcconnect.com/dragon" data-via="ETCInc"
+					data-hashtags="projectdragon" data-show-count="false">Tweet</a>
+				<script async src="//platform.twitter.com/widgets.js"
+					charset="utf-8"></script>
 			</div>
+
 			<div class="container" id="main-body-grid">
 				<div class="dropdown">
 					<button class="btn btn-secondary btn-lg btn-info dropdown-toggle"
@@ -197,8 +202,7 @@
 						<button class="dropdown-item" id="USA" type="button">USA</button>
 						<button class="dropdown-item" id="Germany" type="button">Germany</button>
 						<button class="dropdown-item" id="England" type="button">England</button>
-						<button class="dropdown-item" id="HongKong" type="button">Hong
-							Kong</button>
+						<button class="dropdown-item" id="HongKong" type="button">Hong Kong</button>
 						<button class="dropdown-item" id="Italy" type="button">Italy</button>
 						<button class="dropdown-item" id="Netherlands" type="button">Netherlands</button>
 						<button class="dropdown-item" id="Canada" type="button">Canada</button>
@@ -207,6 +211,7 @@
 						<button class="dropdown-item" id="Fire" type="button">Fire</button>
 						<button class="dropdown-item" id="WinterIsComing" type="button">Winter</button>
 						<button class="dropdown-item" id="Dragon" type="button">Dragon Scales</button>
+						<button class="dropdown-item" id="Trogdor" type="button">Trogdor</button>
 					</div>
 				</div>
 			</div>
@@ -260,7 +265,8 @@
 	<script src="js/PageManager.js"></script>
 	<script src="js/Slider.js"></script>
 	<script src="js/Views.js"></script>
-	<script src="js/debounce.js"></script>
+	<script type="text/javascript" async src="https://platform.twitter.com/widgets.js"></script>
+	<script src="http://www.geoplugin.net/javascript.gp" type="text/javascript"></script>
 
 	<script type="text/javascript">
 		var lastClick = 0;
@@ -270,13 +276,16 @@
 		var delay = 100;
 		var loaded = 0;
 		var playing = true;
-		var ojon = $.getJSON("data.json", function(json) {
+		var ojon = $.getJSON("json/data.json", function(json) {
 			ojson = json;
+		});
+		var logjson = $.getJSON("json/log.json", function(json) {
+			logjson = json;
 		});
 		var log = "";
 	
 		var el = document.createElement('script');
-		el.src = 'data.json?nocache=' + (new Date()).getTime();
+		el.src = 'json/data.json?nocache=' + (new Date()).getTime();
 		document.head.appendChild(el);
 	
 		getColors();
@@ -285,12 +294,11 @@
 		function postData(arr) {
 			$.ajax({
 				type : "POST",
-				url : "http://dragon10-33705:8006",
+				url : "http://dragon10-33705:5000",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
 				success : function(data) {
-					console.log(data);
 				}
 			});
 		}
@@ -314,45 +322,19 @@
 				'sat' : s,
 				'val' : v,
 				'play' : false,
-				'preset' : false
+				'preset' : false,
+				'last' : lastClick
 			};
 			postData(arr);
-			log = "Changing channel " + jscolor.styleElement.textContent + " to hsv: " + h + ", " + s + ", " + v +
-			" using OSC Commands: " + "/cs/chan/select/" + jscolor.styleElement.textContent +
-			"      /cs/chan/at/" + v + "      /cs/color/hs/" + h + "/" + s;
-			changeLog(log);
 			playing = false;
 		}
 	
-		function changeLog(log) {
-			var full = true;
-			$("#box").children().each(function() {
-				if(!$(this).text() && full) {
-					$(this).text(log);
-					full = false;
-			    }
-			});
-			
-			if (full) {
-				$("#box").children().each(function(index) {
-					if (index != 4) {
-						$(this).text($("#box").children()[index+1].innerText);
-					}
-					else {
-						$(this).text(log);
-					}
-				});
-			}
-			
-		}
-	
 		function getColors() {
-			$.getJSON("data.json",function(json) {
+			$.getJSON("json/data.json",function(json) {
 						if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
 							for (var i = 0; i < Object.keys(json).length; i++) {
 								var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
 								$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
-								console.log(json);
 								$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
 										: '#FFF';
 							}
@@ -360,23 +342,16 @@
 							loaded = 1;
 						}
 					});
-			if (lastClick <= Date.now() - 60000 && !playing) {
-				$.ajax({
-					type : "POST",
-					url : "http://dragon10-33705:8006",
-					data : JSON.stringify({
-						'play' : true,
-						'preset' : false
-					}),
-					dataType : "json",
-					contentType : 'application/json; charset=utf-8',
-					success : function(data) {
-						console.log(data);
+			
+			$.getJSON("json/log.json",function(json) {
+				if ((JSON.stringify(logjson) != JSON.stringify(json))) {
+					for (var i = 0; i < Object.keys(json).length; i++) {
+						$("#box").children().eq(i).text(json[i]);
+						// geoplugin_region();
 					}
-				});
-				console.log("play");
-				playing = true;
-			}
+					logjson = json;
+				}
+			})
 		}
 	
 		function isLight(rgb) {
@@ -406,50 +381,57 @@
 	
 		$(".dropdown-item").on("click", event, function() {
 			var arr = {};
+			lastClick = Date.now();
 			switch (event.target.id) {
 			case 'USA':
 				arr = {
-					'chan' : [ [ 13, 12, 9, 1 ], [ 11, 7, 8 ], [ 2, 10, 3, 4, 5, 6 ] ],
-					'h1' : 210,
+					'chan' : [[3,5,6,8,9,10,13 ] , [ 11, 12 ], [ 1,2,4,7 ] ],
+					'h1' : 240,
 					's1' : 100,
-					'v1' : 32,
+					'v1' : 100,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
-					'h3' : 352,
-					's3' : 82,
-					'v3' : 48,
+					'h3' : 0,
+					's3' : 100,
+					'v3' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'USA'
 				};
 				break;
 			case 'Canada':
 				arr = {
 					'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
-					'h1' : 352,
-					's1' : 82,
-					'v1' : 48,
+					'h1' : 0,
+					's1' : 100,
+					'v1' : 100,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Canada'
 				};
 				break;
 			case 'Italy':
 				arr = {
-					'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
+					'chan' : [ [ 13, 12, 11, 3, 9, 10 ], [1, 2, 8 ], [ 7, 4, 5, 6 ] ],
 					'h1' : 120,
 					's1' : 100,
-					'v1' : 34,
+					'v1' : 50,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
-					'h3' : 352,
-					's3' : 82,
-					'v3' : 48,
+					'h3' : 0,
+					's3' : 100,
+					'v3' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Italy'
 				};
 				break;
 			case 'HongKong':
@@ -457,12 +439,14 @@
 					'chan' : [ [ 13, 9, 1, 7, 4, 3, 6, 8 ], [ 12, 11, 2, 10, 5 ] ],
 					'h1' : 0,
 					's1' : 100,
-					'v1' : 50,
+					'v1' : 100,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Hong Kong'
 				};
 				break;
 			case 'Germany':
@@ -473,12 +457,14 @@
 					'v1' : 0,
 					'h2' : 0,
 					's2' : 100,
-					'v2' : 50,
-					'h3' : 51,
+					'v2' : 100,
+					'h3' : 60,
 					's3' : 100,
-					'v3' : 50,
+					'v3' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Germany'
 				};
 				break;
 			case 'Netherlands':
@@ -486,89 +472,97 @@
 					'chan' : [ [ 13, 12, 11, 3 ], [ 9, 1, 2, 10, 8 ], [ 7, 4, 5, 6 ] ],
 					'h1' : 0,
 					's1' : 100,
-					'v1' : 50,
+					'v1' : 100,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
 					'h3' : 240,
 					's3' : 100,
-					'v3' : 40,
+					'v3' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Netherlands'
 				};
 				break;
 			case 'England':
 				arr = {
-					'chan' : [ [ 13, 11, 9, 4, 3 ], [ 1, 7, 6 ], [ 2, 10, 12, 5, 8 ] ],
-					'h1' : 210,
+					'chan' : [ [ 13, 11, 9, 4, 3,7 ], [ 1, 6 ], [ 2, 10, 12, 5, 8 ] ],
+					'h1' : 240,
 					's1' : 100,
-					'v1' : 32,
+					'v1' : 100,
 					'h2' : 0,
 					's2' : 0,
 					'v2' : 100,
-					'h3' : 352,
-					's3' : 82,
-					'v3' : 48,
+					'h3' : 0,
+					's3' : 100,
+					'v3' : 100,
 					'preset' : true,
-					'play' : false
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'England'
 				};
 				break;
 			case 'Fire':
 				arr = {
 					'chan' : [[1,2,3], [4,5], [6,7,8], [9,10], [11,12,13]],
-					'h1' : 7,
-					's1' : 87,
-					'v1' : 68,
-					'h2' : 210,
-					's2' : 9,
-					'v2' : 17,
-					'h3' : 32,
-					's3' : 20,
-					'v3' : 34,
-					'h4' : 14,
-					's4' : 79,
-					'v4' : 82,
-					'h5' : 0,
-					's5' : 11,
-					'v5' : 32,
+					'h1' : 0,
+					's1' : 100,
+					'v1' : 100,
+					'h2' : 0,
+					's2' : 0,
+					'v2' : 0,
+					'h3' : 0,
+					's3' : 0,
+					'v3' : 75,
+					'h4' : 0,
+					's4' : 100,
+					'v4' : 50,
+					'h5' : 10,
+					's5' : 89,
+					'v5' : 91,
 					'preset' : true,
-					'play' : false		
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Fire'		
 				};
 				break;
 			case 'WinterIsComing':
 				arr = {
 					'chan' : [[11,12,13], [1,2], [3,4,5], [6,7], [8,9,10]],
-					'h1' : 209,
-					's1' : 42,
-					'v1' : 29,
-					'h2' : 231,
-					's2' : 3,
-					'v2' : 92,
-					'h3' : 345,
-					's3' : 7,
-					'v3' : 21,
-					'h4' : 30,
-					's4' : 23,
-					'v4' : 34,
-					'h5' : 108,
-					's5' : 10,
-					'v5' : 60,
+					'h1' : 240,
+					's1' : 100,
+					'v1' : 100,
+					'h2' : 223,
+					's2' : 91,
+					'v2' : 100,
+					'h3' : 220,
+					's3' : 50,
+					'v3' : 100,
+					'h4' : 260,
+					's4' : 58,
+					'v4' : 100,
+					'h5' : 0,
+					's5' : 0,
+					'v5' : 100,
 					'preset' : true,
-					'play' : false		
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Winter Is Coming'		
 				};
 				break;
 			case 'Dragon':
 				arr = {
-					'chan' : [[9,10,11], [12,13], [1,2,3], [4,5], [6,7,8]],
+					'chan' : [[9,10], [11,12,13], [1,7,6], [4,5], [3,2,8]],
 					'h1' : 191,
 					's1' : 100,
 					'v1' : 71,
 					'h2' : 278,
 					's2' : 100,
 					'v2' : 71,
-					'h3' : 0,
-					's3' : 0,
-					'v3' : 42,
+					'h3' : 120,
+					's3' : 93,
+					'v3' : 86,
 					'h4' : 0,
 					's4' : 94,
 					'v4' : 42,
@@ -576,14 +570,37 @@
 					's5' : 88,
 					'v5' : 48,
 					'preset' : true,
-					'play' : false		
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Dragon'
+				};
+				break;
+			case 'Trogdor':
+				arr = {
+					'chan' : [[11,12,5,1,2,3],[7,4,6,8],[9,13],[10]],
+					'h1' : 120,
+					's1' : 100,
+					'v1' : 100,
+					'h2' : 120,
+					's2' : 100,
+					'v2' : 100,
+					'h3' : 120,
+					's3' : 39,
+					'v3' : 93,
+					'h4' : 0,
+					's4' : 100,
+					'v4' : 100,
+					'preset' : true,
+					'play' : false,
+					'last' : lastClick,
+					'theme' : 'Trogdor'
 				};
 				break;
 	
 			}
 			$.ajax({
 				type : "POST",
-				url : "http://dragon10-33705:8006",
+				url : "http://dragon10-33705:5000",
 				data : JSON.stringify(arr),
 				dataType : "json",
 				contentType : 'application/json; charset=utf-8',
@@ -591,10 +608,7 @@
 					console.log(data);
 				}
 			});
-			log = "Changing channels for " + event.target.id + " theme... ";
-			changeLog(log);
 			playing = false;
-			lastClick = Date.now();
 	
 		});
 	
@@ -603,6 +617,15 @@
 		$(document).ready(function() {
 			resize();
 		});
+		
+		$("#header").hover(function() {
+			$(".separator").css("background-image", "url('http://www.zingerbugimages.com/backgrounds/flames_seamless.jpg')");
+			$(".separator h1").css("color", "white");
+		}, function() {
+			$(".separator").css("background-image", "none");
+			$(".separator h1").css("color", "black");
+		});
+		
 	</script>
 	
 	
