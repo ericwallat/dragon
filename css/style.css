@@ -1652,10 +1652,6 @@ a:hover {
 	text-decoration: none !important;
 }
 
-#world {
-  background: #652e37;
-  position:absolute;
-  width:100%;
-  height:100%;
-  overflow:hidden;
+#dragon3d {
+	text-align:center;
 }
