@@ -1652,6 +1652,166 @@ a:hover {
 	text-decoration: none !important;
 }
 
-#dragon3d {
-	text-align:center;
+.buttons {
+	position:absolute;
+	border: transparent !important;
+}
+
+#button10 {
+	width:10%;
+	height:19%;
+	top:53%;
+	left:41%;
+}
+
+#button9 {
+	width:14%;
+	height:25%;
+	top:46%;
+	left:49%;
+}
+
+#button2 {
+	width:5%;
+	height:22%;
+	top:28%;
+	left:19%;
+	z-index:2;
+}
+
+#button22 {
+	width:5%;
+	height:12%;
+	top:39%;
+	left:9%;
+	z-index:2;
+}
+
+#button12 {
+	width:26%;
+	height:13%;
+	top:14%;
+	left:39%;
+}
+
+#button11 {
+	width:13%;
+	height:10%;
+	top:27%;
+	left:30%;
+	z-index:2;
+}
+
+#button1 {
+	width:8%;
+	height:27%;
+	top:24%;
+	left:62%;
+	z-index:4;
+}
+
+#button3 {
+	width:5%;
+	height:13%;
+	top:39%;
+	left:28%;
+	z-index:2;
+}
+
+#button4 {
+	width:12%;
+	height:41%;
+	top:22%;
+	left:62%;
+}
+
+#button4 {
+	width:12%;
+	height:41%;
+	top:22%;
+	left:62%;
+}
+
+#button5 {
+	width:7%;
+	height:28%;
+	top:26%;
+	left:30%;
+}
+
+#button6 {
+	width:10%;
+	height:6%;
+	top:62%;
+	left:30%;
+	z-index:2;
+}
+
+#button7 {
+	width:16%;
+	height:8%;
+	top:18%;
+	left:24%;
+}
+
+#button72 {
+	width:16%;
+	height:10%;
+	top:55%;
+	left:12%;
+}
+
+#button73 {
+	width:9%;
+	height:29%;
+	top:30%;
+	left:10%;
+}
+
+#button77 {
+	width:7%;
+	height:43%;
+	top:18%;
+	left:23%;
+}
+
+#button777 {
+	width:14%;
+	height:11%;
+	top:53%;
+	left:28%;
+}
+
+#button7777 {
+	width:8%;
+	height:23%;
+	top:28%;
+	left:41%;
+}
+
+#button8 {
+	width:6%;
+	height:19%;
+	top:36%;
+	left:15%;
+	z-index:2;
+}
+
+#button13 {
+	width:10%;
+	height:7%;
+	top:49%;
+	left:40%;
+	z-index:2;
+}
+
+.clearbtn {
+	background-color: transparent !important;
+	color: transparent !important;
+	border-style:hidden;
+	outline:none !important;
+}
+
+#video {
+	position:absolute;
 }
