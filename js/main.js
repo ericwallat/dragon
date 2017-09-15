@@ -7,7 +7,7 @@
  *
  * @summary   Project dragon main js file
  *
- * @requires jscolor.js, ColorSource.js
+ * @requires jscolor.js, presets.js
  */
 
 
@@ -53,22 +53,10 @@ function postData(arr) {
 }
 
 /**
- * Updates the channel colors and log if they have
+ * Updates the log if they have
  * recently changed.
  */
 function update() {
-	$.getJSON("json/data.json",function(json) {
-				if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
-					for (var i = 0; i < Object.keys(json).length; i++) {
-						var jsoni = parseInt($(".noSelect")[i].children[0].textContent);
-						$(".noSelect")[i].children[0].style.backgroundColor = json[jsoni];
-						$(".noSelect")[i].children[0].style.color = isLight(json[jsoni]) ? '#000'
-								: '#FFF';
-					}
-					ojson = json;
-					loaded = 1;
-				}
-			});
 	
 	$.getJSON("json/log.json",function(json) {
 		if ((JSON.stringify(logjson) != JSON.stringify(json))) {
@@ -77,26 +65,7 @@ function update() {
 			}
 			logjson = json;
 		}
-	})
-}
-
-/**
- * Checks color of button to see if
- * text should be white or black
- * @param {String} rgb 
- * @return {Boolean}
- */
-function isLight(rgb) {
-	try{
-	rgb = rgb.replace(/[^\d,.]/g, '').split(',');
-	var multi = 1;
-	if (rgb.length > 3) {
-		multi = rgb[3];
-	}
-	return ((0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2]) * multi > 255 / 2);
-}catch(e){
-	return true;
-}
+	});
 }
 
 /**

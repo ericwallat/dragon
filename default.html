@@ -18,12 +18,6 @@
 <link href="https://fonts.googleapis.com/css?family=MedievalSharp" rel="stylesheet">
 <link rel="stylesheet" href="css/font-awesome.min.css">
 
-<!--Theme custom css -->
-<link rel="stylesheet" href="css/style.css">
-
-<!--Theme Responsive css-->
-<link rel="stylesheet" href="css/responsive.css" />
-
 <link rel="stylesheet"
 	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css"
 	integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ"
@@ -39,9 +33,24 @@
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"
 	integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn"
 	crossorigin="anonymous"></script>
+	
+	<!--Theme custom css -->
+<link rel="stylesheet" href="css/style.css">
+
+<!--Theme Responsive css-->
+<link rel="stylesheet" href="css/responsive.css" />
 
 </head>
 <body>
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/en_US/sdk.js#xfbml=1&version=v2.10";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 	<!--[if lt IE 8]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -52,111 +61,28 @@
 
 
 	<div class="container" id="main-body">
-		<div class="alert" id="info">
-			<span class="closebtn"
-				onclick="this.parentElement.style.display='none';">×</span> <strong>Hi!</strong>
-			Change the dragon's lights by using the buttons on the left or by
-			selecting a preset from the dropdown!
-		</div>
 		<div class="split">
 			<div class="container" id="main-body-grid">
-				<h2 style="text-align: center; color: #eee;">Light Controls</h2>
-				<div id="channels" class="grid"
-					style="padding-left: 0%; z-index: 3; margin: auto;">
-					<div class="grid-row" style="height: 12.5%;">
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="1" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;"
-								style="width:100%;height:100%;">1</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="2" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">2</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="3" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">3</button>
-						</div>
-					</div>
-					<div class="grid-row" style="height: 12.5%;">
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="4" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;"
-								style="width:100%;height:100%;">4</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="5" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">5</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="6" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">6</button>
-						</div>
-					</div>
-					<div class="grid-row" style="height: 12.5%;">
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="7" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;"
-								style="width:100%;height:100%;">7</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="8" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">8</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="9" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">9</button>
-						</div>
-					</div>
-					<div class="grid-row" style="height: 12.5%;">
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="10" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;"
-								style="width:100%;height:100%;">10</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="11" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">11</button>
-						</div>
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="12" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;">12</button>
-						</div>
-					</div>
-					<div class="grid-row" style="height: 12.5%;">
-						<div class="grid-cell noSelect notSelected" data-type="chan-color"
-							data-channel="13" style="width: 33%;">
-							<button
-								class="clearbtn jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'colorSelect(this)'}"
-								style="width: 100%; height: 100%;"
-								style="width:100%;height:100%;">13</button>
-						</div>
-					</div>
+			<h3>Instructions</h3>
+				<p>Click anywhere on the dragon to adjust the colors of the corresponding lights. A color picker will appear when you click.
+				Or, try the presets in the dropdown to the right of the live stream. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
+				<br><br><br>
+						<h3>Share your experience on social media</h3>
+						<div class="socialmedia">
+				<a href="https://twitter.com/share" class="twitter-share-button"
+					data-size="large" data-text="Change the lights on the dragon at "
+					data-url="http://etcconnect.com/dragon" data-via="ETCInc"
+					data-hashtags="projectdragon" data-show-count="false">Tweet</a>
+				<script async src="//platform.twitter.com/widgets.js"
+					charset="utf-8"></script>
+				<div class="fb-share-button share"
+					data-href="https://etcconnect.com/dragon" data-layout="button"
+					data-size="large" data-mobile-iframe="true">
+					<a class="fb-xfbml-parse-ignore" target="_blank"
+						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fetcconnect.com%2Fdragon&amp;src=sdkpreparse">Share</a>
 				</div>
+				</div>
+
 			</div>
 
 
@@ -308,24 +234,12 @@
 						</div>
 				</object>
 				
-				<a href="https://twitter.com/share" class="twitter-share-button"
-					data-size="large" data-text="Change the lights on the dragon at "
-					data-url="http://etcconnect.com/dragon" data-via="ETCInc"
-					data-hashtags="projectdragon" data-show-count="false">Tweet</a>
-				<script async src="//platform.twitter.com/widgets.js"
-					charset="utf-8"></script>
+				
 			</div>
 
 			<div class="container" id="main-body-grid">
-				<div class="dropdown">
-					<button class="btn btn-secondary btn-lg btn-info dropdown-toggle"
-						type="button" id="dropdownMenu2" data-toggle="dropdown"
-						aria-haspopup="true" aria-expanded="false"
-						style="color: #eee; background-color: #00aeef; white-space: normal; font-family: 'MedievalSharp', cursive !important;">Presets</button>
-					<div class="dropdown-menu dropdown-menu-center"
-						style="left: 50%; right: auto; text-align: center; transform: translate(-50%, 0); width: 100%;"
-						aria-labelledby="dropdownMenu2">
-						<h6 class="dropdown-header">ETC Locations</h6>
+				<div class="list-group">
+						<h3>ETC Locations</h3>
 						<button class="dropdown-item" id="USA" type="button">USA</button>
 						<button class="dropdown-item" id="Germany" type="button">Germany</button>
 						<button class="dropdown-item" id="England" type="button">England</button>
@@ -334,13 +248,14 @@
 						<button class="dropdown-item" id="Netherlands" type="button">Netherlands</button>
 						<button class="dropdown-item" id="Canada" type="button">Canada</button>
 						<div class="dropdown-divider"></div>
-						<h6 class="dropdown-header">More Themes</h6>
+						<h3>More Themes</h3>
 						<button class="dropdown-item" id="Fire" type="button">Fire</button>
 						<button class="dropdown-item" id="WinterIsComing" type="button">Winter</button>
 						<button class="dropdown-item" id="Dragon" type="button">Dragon Scales</button>
 						<button class="dropdown-item" id="Trogdor" type="button">Trogdor</button>
 					</div>
 				</div>
+
 			</div>
 
 		</div>
@@ -349,7 +264,7 @@
 	</div>
 
 	<div class="container" id="log">
-		<h2>Event Log</h2>
+		<h3>Event Log</h3>
 		<div class="container" id="box">
 			<p></p>
 			<p></p>
@@ -361,16 +276,13 @@
 
 
 	<div class="container" id="about">
-
-		<h2>What's happening here?</h2>
-		<p>
-			You are utilizing a communication protocol known as <a
-				target="_blank" href="http://opensoundcontrol.org/introduction-osc">Open
-				Sound Control (OSC).</a> OSC is a protocol that uses network
+	<h3>What's happening here?</h3>
+		<p>You are utilizing a communication protocol known as <a target="_blank" href="http://opensoundcontrol.org/introduction-osc">
+		Open Sound Control (OSC).</a> OSC is a protocol that uses network
 			communication (wired or wireless) to communicate between various
 			audio, video, and lighting devices, and other devices, for remote
-			control of ETC consoles.
-		</p>
+			control of ETC consoles.</p>
+		
 	</div>
 
 	<footer id="footer" class="footer">

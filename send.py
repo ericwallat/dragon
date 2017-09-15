@@ -24,10 +24,6 @@ parser.add_argument("--ip", default="192.168.102.55",help="The ip of the OSC ser
 parser.add_argument("--port", type=int, default=8005,help="The port the OSC server is listening on")
 args = parser.parse_args()
 client = udp_client.SimpleUDPClient(args.ip, args.port)
-data = {1: "rgb(255,255,255)",2: "rgb(255,255,255)",3: "rgb(255,255,255)",4: "rgb(255,255,255)",
-		5: "rgb(255,255,255)",6: "rgb(255,255,255)",7: "rgb(255,255,255)",8: "rgb(255,255,255)",
-		9: "rgb(255,255,255)",10: "rgb(255,255,255)",11: "rgb(255,255,255)",12: "rgb(255,255,255)",
-		13: "rgb(255,255,255)"}
 
 def sendData():
 	print("Hello! Dragon OSC Server is up.")
@@ -35,19 +31,13 @@ sendData()
 
 
 def checkclick():
-	global lastClick, playing, data
+	global lastClick, playing
 	threading.Timer(2, checkclick).start()
 	if lastClick <= 1000*calendar.timegm(time.gmtime()) - 60000 and not playing:
 		client.send_message("/cs/key/clearall", " ")
 		client.send_message("/cs/playback/go", " ")
 		print("Playing cues...")
 		playing = True
-		data = {1: "rgb(255,255,255)",2: "rgb(255,255,255)",3: "rgb(255,255,255)",4: "rgb(255,255,255)",
-		5: "rgb(255,255,255)",6: "rgb(255,255,255)",7: "rgb(255,255,255)",8: "rgb(255,255,255)",
-		9: "rgb(255,255,255)",10: "rgb(255,255,255)",11: "rgb(255,255,255)",12: "rgb(255,255,255)",
-		13: "rgb(255,255,255)"}
-		with open('json/data.json', 'w') as outfile:
-			json.dump(data, outfile)
 checkclick()
 
 app = Flask(__name__)
@@ -56,7 +46,7 @@ CORS(app)
 @app.route("/", methods=['GET', 'POST'])
 def test():
 	if request.method == 'POST':
-		global playing, lastClick, data
+		global playing, lastClick
 		lastClick = request.json['last']
 		if not request.json['play']:
 			playing = False
@@ -73,7 +63,6 @@ def test():
 					s = request.json['s'+str(i)]
 					v = request.json['v'+str(i)]
 					rgb = tuple(int(i * 255) for i in colorsys.hsv_to_rgb(h/360,s/100,v/100))
-					data[chan] = "rgb" + str(rgb)
 				client.send_message("/cs/chan/at/" + str(v), " ")
 				client.send_message("/cs/color/hs/" + str(h) + "/" + str(s), " ")
 				i = i+1
@@ -93,15 +82,9 @@ def test():
 			client.send_message(level," ")
 			huesat = "/cs/color/hs/" + str(h) + "/" + str(s)
 			client.send_message(huesat," ")
-			with open('json/data.json', 'r') as jsonFile:
-				data = json.load(jsonFile)
-			rgb = tuple(int(i * 255) for i in colorsys.hsv_to_rgb(h/360,s/100,v/100))
-			data[request.json['chan']] = "rgb" + str(rgb)
 			log = "Changing channel " + str(request.json['chan']) + " to hsv: " + str(h) + ", " + str(s) + ", " + str(v) +" using OSC Commands: " + "/cs/chan/select/" + str(request.json['chan']) + "      /cs/chan/at/" + str(v) + "      /cs/color/hs/" + str(h) + "/" + str(s)
 			d.append(log)
 		client.send_message("/cs/key/clearselection", " ")
-		with open('json/data.json', 'w') as outfile:
-			json.dump(data, outfile)
 		with open('json/log.json', 'w') as logfile:
 			json.dump(list(d),logfile)
 		return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
