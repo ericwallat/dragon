@@ -63,10 +63,14 @@
 	<div class="container" id="main-body">
 		<div class="split">
 			<div class="container" id="main-body-grid">
+			<div class="logo">
+				<a href="http://etcconnect.com"><img src="images/etclogo.png"
+					alt="Logo" /></a>
+			</div>
 			<h3>Instructions</h3>
 				<p>Click anywhere on the dragon to adjust the colors of the corresponding lights. A color picker will appear when you click.
-				Or, try the presets in the dropdown to the right of the live stream. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
-				<br><br><br>
+				Or, try the presets in the list to the right of the live stream. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
+
 						<h3>Share your experience on social media</h3>
 						<div class="socialmedia">
 				<a href="https://twitter.com/share" class="twitter-share-button"
@@ -93,6 +97,8 @@
 				<object width="640" height="360">
 					<param name="movie"
 						value="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3" />
+						<!--  if live stream goes out, replace the embeded url until the '?' in the above and below youtube sources. The values
+						after the ? make formatting on the webpage -->
 					<param name="allowFullScreen" value="true" />
 					<param name="allowscriptaccess" value="always" />
 					<embed id="video" width="640" height="360"
@@ -239,7 +245,8 @@
 
 			<div class="container" id="main-body-grid">
 				<div class="list-group">
-						<h3>ETC Locations</h3>
+						<h3>Presets</h3>
+						<h4>ETC Locations</h4>
 						<button class="dropdown-item" id="USA" type="button">USA</button>
 						<button class="dropdown-item" id="Germany" type="button">Germany</button>
 						<button class="dropdown-item" id="England" type="button">England</button>
@@ -248,7 +255,7 @@
 						<button class="dropdown-item" id="Netherlands" type="button">Netherlands</button>
 						<button class="dropdown-item" id="Canada" type="button">Canada</button>
 						<div class="dropdown-divider"></div>
-						<h3>More Themes</h3>
+						<h4>More Themes</h4>
 						<button class="dropdown-item" id="Fire" type="button">Fire</button>
 						<button class="dropdown-item" id="WinterIsComing" type="button">Winter</button>
 						<button class="dropdown-item" id="Dragon" type="button">Dragon Scales</button>
@@ -285,16 +292,6 @@
 		
 	</div>
 
-	<footer id="footer" class="footer">
-		<div class="container" style="text-align: center;">
-
-			<div class="logo">
-				<a href="http://etcconnect.com"><img src="images/etclogo.png"
-					alt="Logo" /></a>
-			</div>
-
-		</div>
-	</footer>
 
 
 	<script src="js/vendor/jquery-1.11.2.min.js"></script>

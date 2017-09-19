@@ -184,8 +184,8 @@ h2 {
 h3 {
     font-weight: 300;
     margin-bottom: .9rem;
-    font-size: 2.1rem;
-    line-height: 2.5rem;
+    font-size: 2vw;
+    line-height: 2rem;
 }
 h4 {
     font-size: 1.6rem;
@@ -202,7 +202,7 @@ h6 {
 }
 p {
 	font-family: 'MedievalSharp', cursive !important;
-    line-height: 2.5rem;
+    line-height: 1.5rem;
     font-size: 1vw;
 }
 p:last-child {
@@ -358,6 +358,7 @@ textarea::-ms-input-placeholder
 
 .logo {
 	display:inline-block;
+	padding-bottom:10px;
 }
 
 
@@ -411,6 +412,7 @@ textarea::-ms-input-placeholder
     width:19%;
     top:5%;
     float:left;
+    text-align:center;
 }
 
 #main-body-video {
@@ -817,8 +819,15 @@ a:hover {
     font-size: 1vw;
 }
 
+.list-group h4 {
+	text-align: center;
+	color:#eee;
+}
+
 .list-group h3 {
 	text-align: center;
+	color:#eee;
+	text-decoration:underline;
 }
 
 .socialmedia {

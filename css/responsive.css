@@ -6,7 +6,7 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 */
 
 /* Portrait tablets and medium desktops */
-@media (min-width: 992px) and (max-width: 1199px) {
+@media (min-width: 1024px) and (max-width: 1199px) {
     body {
         font-size: 15px;
     }
@@ -14,13 +14,14 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 }
 
 /* Portrait tablets and small desktops */
-@media  (max-width: 991px) {
+@media  (max-width: 1023px) {
     html {
         font-size: 90%;	
     }
     
 	h2, h3, h4, h5, h6 {
     	font-size: 2vw;
+    	line-height:1.5rem;
     }
     
     p {
@@ -36,6 +37,10 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
 	
 	.grid-cell .empty-cell {
 	width: 2%;
+	}
+	
+	p {
+		line-height: 1rem;
 	}
    
 }
