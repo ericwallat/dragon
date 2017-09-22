@@ -43,7 +43,7 @@ function colorSelect(jscolor) {
 function postData(arr) {
 	$.ajax({
 		type : "POST",
-		url : "http://dragon10-33705:5000",
+		url : "http://dragon:5000",
 		data : JSON.stringify(arr),
 		dataType : "json",
 		contentType : 'application/json; charset=utf-8',

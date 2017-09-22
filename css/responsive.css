@@ -10,6 +10,14 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
     body {
         font-size: 15px;
     }
+    
+    .footer {
+    	display:none;
+    }
+    
+    .leftbarsm {
+    	display:none;
+    }
 
 }
 
@@ -26,6 +34,18 @@ Author URI: http://themeforest.net/user/XpeedStudio/portfolio
     
     p {
     	font-size: 1.2vw;
+    }
+    
+    .footer {
+    	display:block;
+    }
+    
+    .leftbarsm {
+    	display:block;
+    }
+    
+    .leftbar {
+    	display:none;
     }
 
 }

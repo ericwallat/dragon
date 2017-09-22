@@ -350,10 +350,12 @@ textarea::-ms-input-placeholder
 /*For Footer Section*/
 .footer{
 	background:#000;
-	color:#000;
+	color:#eee;
 	height:auto;
 	width:100%;
 	position:absolute;
+	text-align:center;
+	display:none;
 }
 
 .logo {
@@ -839,4 +841,8 @@ a:hover {
 .share {
 	float: left;
 	padding-right: 3%;
+}
+
+.leftbarsm {
+	display:none;
 }
