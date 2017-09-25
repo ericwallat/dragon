@@ -69,12 +69,12 @@
 			</div>
 			<div class="leftbarsm">
 				<h3>Instructions</h3>
-				<p>Click anywhere on the dragon to adjust its colors or select a presets in the list to the right of the live stream. Have fun!</p>
+				<p>Click anywhere on the dragon to adjust its colors or select a preset from the list. Have fun!</p>
 				
 			</div>
 			<div class="leftbar">
 			<h3>Instructions</h3>
-				<p>Click anywhere on the dragon to adjust its colors or select a presets in the list to the right of the live stream. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
+				<p>Click anywhere on the dragon to adjust its colors or select a preset from the list. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
 
 						<h3>Share your experience on social media</h3>
 						<div class="socialmedia">
@@ -340,6 +340,9 @@
 	
 		var el = document.createElement('script');
 		el.src = 'json/data.json?nocache=' + (new Date()).getTime();
+		var logjson = document.createElement('script');
+		logjson.src = 'json/log.json?nocache=' + (new Date()).getTime();
+		document.head.appendChild(logjson);
 		document.head.appendChild(el);
 	
 		update();
@@ -363,8 +366,7 @@
 			$(".separator").css("background-image", "none");
 			$(".separator h1").css("color", "black");
 		});
-		
-		
+
 	</script>
 	
 	
