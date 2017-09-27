@@ -1620,6 +1620,7 @@ var jsc = {
 			p.btn.style.color = THIS.buttonColor;
 			p.btn.style.font = '12px sans-serif';
 			p.btn.style.textAlign = 'center';
+			p.btn.className = "closebtn";
 			try {
 				p.btn.style.cursor = 'pointer';
 			} catch(eOldIE) {

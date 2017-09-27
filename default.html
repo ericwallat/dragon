@@ -98,18 +98,9 @@
 
 
 			<div class="videocontainer">
+			
+				<iframe id="video" width="640" height="360" frameborder="0" src="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3"><</iframe>
 
-				<object width="640" height="360">
-					<param name="movie"
-						value="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3" />
-						<!--  if live stream goes out, replace the embeded url until the '?' in the above and below youtube sources. The values
-						after the ? make formatting on the webpage -->
-					<param name="allowFullScreen" value="true" />
-					<param name="allowscriptaccess" value="always" />
-					<embed id="video" width="640" height="360"
-						src="https://www.youtube.com/embed/9UhvRPGphp8?showinfo=0&amp;autoplay=1&amp;html5=1&amp;rel=0&amp;hl=en_US&amp;version=3"
-						class="youtube-player" type="text/html" allowscriptaccess="always"
-						allowfullscreen="true" style="width: 100%;" />
 						<div id="button10" class="grid-cell noSelect notSelected buttons" data-type="chan-color"
 							data-channel="10">
 							<button
@@ -348,7 +339,7 @@
 		update();
 		setInterval(update, 2000)
 	
-		$(".dropdown-item").on("click", event, function() {
+		$(".dropdown-item").on("click", function(event) {
 			themeSelect(event);
 			playing = false;
 		}); 
@@ -366,6 +357,8 @@
 			$(".separator").css("background-image", "none");
 			$(".separator h1").css("color", "black");
 		});
+	
+		
 
 	</script>
 	
