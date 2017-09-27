@@ -24,6 +24,8 @@ parser.add_argument("--ip", default="192.168.102.55",help="The ip of the OSC ser
 parser.add_argument("--port", type=int, default=8005,help="The port the OSC server is listening on")
 args = parser.parse_args()
 client = udp_client.SimpleUDPClient(args.ip, args.port)
+data = {'Eyes': "rgb(255,255,255)",'Head Right': "rgb(255,255,255)",'Head Left': "rgb(255,255,255)",'Front': "rgb(255,255,255)",
+		'Back': "rgb(255,255,255)",'Scales': "rgb(255,255,255)",'Left Side': "rgb(255,255,255)",'Right Side': "rgb(255,255,255)"}
 
 def sendData():
 	print("Hello! Dragon OSC Server is up.")
@@ -31,13 +33,17 @@ sendData()
 
 
 def checkclick():
-	global lastClick, playing
+	global lastClick, playing, data
 	threading.Timer(2, checkclick).start()
 	if lastClick <= 1000*calendar.timegm(time.gmtime()) - 60000 and not playing:
 		client.send_message("/cs/key/clearall", " ")
 		client.send_message("/cs/playback/go", " ")
 		print("Playing cues...")
 		playing = True
+		data = {'Eyes': "rgb(255,255,255)",'Head Right': "rgb(255,255,255)",'Head Left': "rgb(255,255,255)",'Front': "rgb(255,255,255)",
+		'Back': "rgb(255,255,255)",'Scales': "rgb(255,255,255)",'Left Side': "rgb(255,255,255)",'Right Side': "rgb(255,255,255)"}
+		with open('json/data.json', 'w') as outfile:
+			json.dump(data,outfile)
 checkclick()
 
 app = Flask(__name__)
@@ -46,7 +52,7 @@ CORS(app)
 @app.route("/", methods=['GET', 'POST'])
 def test():
 	if request.method == 'POST':
-		global playing, lastClick
+		global playing, lastClick, data
 		lastClick = request.json['last']
 		if not request.json['play']:
 			playing = False
@@ -63,10 +69,11 @@ def test():
 					s = request.json['s'+str(i)]
 					v = request.json['v'+str(i)]
 					rgb = tuple(int(i * 255) for i in colorsys.hsv_to_rgb(h/360,s/100,v/100))
+					data[request.json['theme']] = "rgb" + str(rgb)
 				client.send_message("/cs/chan/at/" + str(v), " ")
 				client.send_message("/cs/color/hs/" + str(h) + "/" + str(s), " ")
 				i = i+1
-			log = "Changing channels for " + request.json['theme'] + " theme... "
+			log = "Changing channels for " + request.json['theme']
 			d.append(log)
 		else:
 			client.send_message("/cs/playback/go", " ")
@@ -87,6 +94,8 @@ def test():
 		client.send_message("/cs/key/clearselection", " ")
 		with open('json/log.json', 'w') as logfile:
 			json.dump(list(d),logfile)
+		with open('json/data.json', 'w') as outfile:
+			json.dump(data, outfile)
 		return json.dumps({'success':True}), 200, {'ContentType':'application/json'}
 	else:
 		return('Complete')

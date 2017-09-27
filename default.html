@@ -75,22 +75,67 @@
 			<div class="leftbar">
 			<h3>Instructions</h3>
 				<p>Click anywhere on the dragon to adjust its colors or select a preset from the list. Have fun! (Hint: there are 13 different lights so you can customize color anywhere)</p>
-
-						<h3>Share your experience on social media</h3>
-						<div class="socialmedia">
-				<a href="https://twitter.com/share" class="twitter-share-button"
-					data-size="large" data-text="Change the lights on the dragon at "
-					data-url="http://etcconnect.com/dragon" data-via="ETCInc"
-					data-hashtags="projectdragon" data-show-count="false">Tweet</a>
-				<script async src="//platform.twitter.com/widgets.js"
-					charset="utf-8"></script>
-				<div class="fb-share-button share"
-					data-href="https://etcconnect.com/dragon" data-layout="button"
-					data-size="large" data-mobile-iframe="true">
-					<a class="fb-xfbml-parse-ignore" target="_blank"
-						href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fetcconnect.com%2Fdragon&amp;src=sdkpreparse">Share</a>
-				</div>
-				</div>
+<div id="channels" class="grid"
+					style="padding-left: 0%; z-index: 3; margin: auto;">
+					<div class="grid-row" style="height: 12.5%;">
+						<div class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="1" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">Eyes</button>
+						</div>
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="2" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;">Left Side</button>
+						</div>
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="3" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;">Right Side</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="4" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">Front</button>
+						</div>
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="5" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;">Head Left</button>
+						</div>
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="6" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;">Head Right</button>
+						</div>
+					</div>
+					<div class="grid-row" style="height: 12.5%;">
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="7" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;"
+								style="width:100%;height:100%;">Scales</button>
+						</div>
+						<div  class="dragonpart grid-cell noSelect notSelected" data-type="chan-color"
+							data-channel="8" style="width: 33%;">
+							<button
+								class="jscolor {closable:true,closeText:'Close',valueElement: 'color_value', onFineChange:'dragonSelect(this)'}"
+								style="width: 100%; height: 100%;">Back</button>
+						</div>
+					</div>
+					
+					</div>
 				</div>
 			</div>
 
@@ -357,8 +402,6 @@
 			$(".separator").css("background-image", "none");
 			$(".separator h1").css("color", "black");
 		});
-	
-		
 
 	</script>
 	

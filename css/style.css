@@ -101,6 +101,7 @@ a span {
     -webkit-transition: 0.2s ease-in-out;
     -o-transition: 0.2s ease-in-out;
     transition: 0.2s ease-in-out;
+    font-family: 'MedievalSharp', cursive !important;
 }
 .btn.extra-width {
     padding: 13px 40px;
@@ -355,7 +356,6 @@ textarea::-ms-input-placeholder
 	width:100%;
 	position:absolute;
 	text-align:center;
-	display:none;
 }
 
 .logo {

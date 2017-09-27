@@ -37,6 +37,60 @@ function colorSelect(jscolor) {
 }
 
 /**
+ * Updates the selected dragon part colors
+ * @param {jscolor object} jscolor 
+ */
+function dragonSelect(jscolor) {
+	h = Math.round(jscolor.hsv[0]);
+	s = Math.round(jscolor.hsv[1]);
+	v = Math.round(jscolor.hsv[2]);
+	if (lastClick >= Date.now() - delay) {
+		return;
+	}
+	lastClick = Date.now();
+	channels = [[]];
+	switch(jscolor.styleElement.textContent) {
+	case 'Head Left':
+		channels = [[10]];
+		break;
+	case 'Left Side':
+		channels = [[2,3,8]];
+		break;
+	case 'Right Side':
+		channels = [[7,4,1]];
+		break;
+	case 'Front':
+		channels = [[1,2]];
+		break;
+	case 'Back':
+		channels = [[5,6]];
+		break;
+	case 'Eyes':
+		channels = [[13]];
+		break;
+	case 'Head Right':
+		channels = [[9]];
+		break;
+	case 'Scales':
+		channels = [[12,11]];
+		break;
+	}
+	
+	var arr = {
+		'chan' : channels,
+		'h1' : h,
+		's1' : s,
+		'v1' : v,
+		'play' : false,
+		'preset' : true,
+		'last' : lastClick,
+		'theme' : jscolor.styleElement.textContent
+	};
+	postData(arr);
+	playing = false;
+}
+
+/**
  * Sends AJAX POST request to Python Flask server
  * @param {Object} arr 
  */
@@ -53,7 +107,7 @@ function postData(arr) {
 }
 
 /**
- * Updates the log if they have
+ * Updates the log and buttons if they have
  * recently changed.
  */
 function update() {
@@ -66,6 +120,36 @@ function update() {
 			logjson = json;
 		}
 	});
+	
+	$.getJSON("json/data.json",function(json) {
+		if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
+			for (var i = 0; i < Object.keys(json).length; i++) {
+				$(".dragonpart")[i].children[0].style.backgroundColor = json[$(".dragonpart")[i].children[0].textContent];
+				$(".dragonpart")[i].children[0].style.color = isLight(json[$(".dragonpart")[i].children[0].textContent]) ? '#000'
+						: '#FFF';
+			}
+			ojson = json;
+			loaded = 1;
+		}
+	});
+}
+
+/**
+ * Changes the color of the button text to white
+ * or black depending on the background color
+ * @param {String} rgb 
+ */
+function isLight(rgb) {
+	try{
+	rgb = rgb.replace(/[^\d,.]/g, '').split(',');
+	var multi = 1;
+	if (rgb.length > 3) {
+		multi = rgb[3];
+	}
+	return ((0.213 * rgb[0] + 0.715 * rgb[1] + 0.072 * rgb[2]) * multi > 255 / 2);
+}catch(e){
+	return true;
+}
 }
 
 /**
