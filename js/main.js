@@ -112,16 +112,25 @@ function postData(arr) {
  */
 function update() {
 	
-	$.getJSON("json/log.json",function(json) {
+	$.ajax({
+		cache: false,
+		url: "json/log.json",
+		dataType: "json", 
+		success: function(json) {
 		if ((JSON.stringify(logjson) != JSON.stringify(json))) {
 			for (var i = 0; i < Object.keys(json).length; i++) {
 				$("#box").children().eq(i).text(json[i]);
 			}
 			logjson = json;
 		}
+		}
 	});
 	
-	$.getJSON("json/data.json",function(json) {
+	$.ajax({
+		cache: false,
+		url: "json/data.json",
+		dataType: "json", 
+		success: function(json) {
 		if ((JSON.stringify(ojson) != JSON.stringify(json)) || loaded == 0) {
 			for (var i = 0; i < Object.keys(json).length; i++) {
 				$(".dragonpart")[i].children[0].style.backgroundColor = json[$(".dragonpart")[i].children[0].textContent];
@@ -130,6 +139,7 @@ function update() {
 			}
 			ojson = json;
 			loaded = 1;
+		}
 		}
 	});
 }
